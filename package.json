@@ -1,0 +1,22 @@
+{
+  "name": "english-dictionary",
+  "version": "1.0.0",
+  "description": "this is the pocket dictionary which uses react-redux",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supun-kanda/english-dictionary.git"
+  },
+  "keywords": [
+    "dictionary"
+  ],
+  "author": "Supun Kandambige",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/supun-kanda/english-dictionary/issues"
+  },
+  "homepage": "https://github.com/supun-kanda/english-dictionary#readme"
+}
