@@ -1,14 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+
+// styles
 import './App.css';
+
+// components
+import Customers from "./components/Customers";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Css has been <code>Loaded</code>
         </p>
         <a
           className="App-link"
@@ -19,6 +22,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Customers />
     </div>
   );
 }
