@@ -1,10 +1,8 @@
 import React from 'react';
 
 // styles
-import './App.css';
 
 // components
-import Customers from "./components/Customers";
 
 function App() {
   return (
@@ -22,7 +20,6 @@ function App() {
           Learn React
         </a>
       </header>
-      <Customers />
     </div>
   );
 }
