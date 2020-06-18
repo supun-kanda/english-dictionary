@@ -1,6 +1,4 @@
-import gql from "graphql-tag";
-
-const last5Words = gql`
+export const last5Words = `
 {
     words(sortField:"lastAccess",sortOrder:-1,limit:5){
     id

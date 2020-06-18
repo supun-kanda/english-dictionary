@@ -70,3 +70,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 # Reference
 
 https://dev.to/vish448/create-react-project-without-create-react-app-3goh
+
+
+## Good Reads
+Reducer practice: https://redux.js.org/style-guide/style-guide#allow-many-reducers-to-respond-to-the-same-action
+Reducer practice: https://redux.js.org/recipes/structuring-reducers/structuring-reducers
+Async Actions: https://redux.js.org/advanced/async-actions
