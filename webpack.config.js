@@ -1,8 +1,12 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    readFileSync = require('fs').readFileSync,
+    externalConfigurationsPath = 'configs/configurations.json',
+    rawConfigs = JSON.parse(readFileSync(externalConfigurationsPath)),
+    PORT = rawConfigs.PORT;
 
 module.exports = {
-    entry: './src/index.js',
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: `${__dirname}/dist`,
         filename: 'index_bundle.js'
@@ -25,6 +29,6 @@ module.exports = {
         writeToDisk: true,
         historyApiFallback: true,
         contentBase: './dist',
-        port: 8080
+        port: PORT
     }
 }
