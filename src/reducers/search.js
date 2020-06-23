@@ -7,7 +7,6 @@ export function search(state = SEARCH_SUGGESSTION_INITIAL, action) {
     switch (action.state) {
         case ACTION_STATES.IN_PROGRESS:
             return {
-                ...state,
                 searchSuggestions: {
                     isFetching: true,
                     shouldUpdate: true
@@ -15,7 +14,6 @@ export function search(state = SEARCH_SUGGESSTION_INITIAL, action) {
             };
         case ACTION_STATES.COMPLETE:
             return {
-                ...state,
                 searchSuggestions: {
                     isFetching: false,
                     shouldUpdate: false,
@@ -24,7 +22,6 @@ export function search(state = SEARCH_SUGGESSTION_INITIAL, action) {
             };
         case ACTION_STATES.FAILURE:
             return {
-                ...state,
                 searchSuggestions: {
                     isFetching: false,
                     shouldUpdate: true,

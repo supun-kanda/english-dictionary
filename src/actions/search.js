@@ -1,11 +1,12 @@
 // services
 import { request } from "../services/graphql";
 
-// queries
-import { last5Words } from "../constants/queries";
-
 // constants
 import { SEARCH_SUGGESSTION, ACTION_STATES } from "../constants/stateManagement";
+import { last5WordsQuery } from "../constants/queries";
+
+// temp
+import { setSelectedWordId } from "./selectedWord";
 
 const
     startFetching = () => {
@@ -31,11 +32,10 @@ const
 
 export const searchSuggest = () =>
     dispatch => {
+        dispatch(setSelectedWordId("5ee73bb1a8e0f30b6db0e679"));
         dispatch(startFetching());
-        return request(last5Words)
-            .then(data => {
-                return dispatch(finishFetching(data))
-            })
+        return request(last5WordsQuery)
+            .then(data => dispatch(finishFetching(data)))
             .catch(err => dispatch(failFetching(err)));
     };
 
