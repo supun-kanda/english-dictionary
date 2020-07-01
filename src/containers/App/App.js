@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // components & containers
-import WordView from "../wordView/WordView";
 import AppBar from "../../components/App/AppBar";
+import MainRouter from "./MainRouter";
 
 // services
 import { searchSuggest } from "../../actions/search";
@@ -18,7 +18,7 @@ class App extends Component {
           searchSuggest={() => this.props.searchSuggest()}
           searchSuggestions={this.props.searchSuggestions}
         />
-        <WordView />
+        <MainRouter searchSuggestions={this.props.searchSuggestions} />
       </div>
     )
   }

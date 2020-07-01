@@ -32,7 +32,7 @@ const
 
 export const searchSuggest = () =>
     dispatch => {
-        dispatch(setSelectedWordId("5ee73bb1a8e0f30b6db0e679"));
+        dispatch(setSelectedWordId("5ee51cbe82830472596cdc08"));
         dispatch(startFetching());
         return request(last5WordsQuery)
             .then(data => dispatch(finishFetching(data)))
