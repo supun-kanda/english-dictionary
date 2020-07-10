@@ -6,6 +6,8 @@ import { AppBar as Bar, TextField, IconButton, Toolbar, Typography, Button } fro
 import { Portrait } from "@material-ui/icons";
 import { Autocomplete } from '@material-ui/lab';
 
+import { Link } from "react-router-dom";
+
 export default class AppBar extends Component {
     componentDidMount() {
         this.props.searchSuggest();
@@ -18,7 +20,9 @@ export default class AppBar extends Component {
                         <IconButton edge="start" color="inherit" aria-label="menu">
                             <Portrait />
                         </IconButton>
-                        <Typography variant="h6">Pocket Dictionary</Typography>
+                        <Link to="/">
+                            <Typography variant="h6">Pocket Dictionary</Typography>
+                        </Link>
                         <Button color="inherit">Login</Button>
                         <Autocomplete
                             id="combo-box-demo"

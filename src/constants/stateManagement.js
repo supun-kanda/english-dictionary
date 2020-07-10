@@ -2,7 +2,8 @@
 export const
     SEARCH_SUGGESSTION = 'SEARCH_SUGGESSTION',
     FETCH_SELECTED_WORD = 'FETCH_SELECTED_WORD',
-    SET_SELECTED_WORD_ID = 'SET_SELECTED_WORD_ID';
+    SET_SELECTED_WORD_ID = 'SET_SELECTED_WORD_ID',
+    FETCH_WORD_GRID = 'FETCH_WORD_GRID';
 
 // action states
 export const
@@ -23,4 +24,8 @@ export const
     SELECTED_WORD_ID_INITIAL = {
         id: null,
         isFetching: false
-    };
+    },
+    FETCH_WORD_GRID_INITIAL = {
+        isFetching: false,
+        shouldUpdate: true,
+    }

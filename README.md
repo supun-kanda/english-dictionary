@@ -76,3 +76,5 @@ https://dev.to/vish448/create-react-project-without-create-react-app-3goh
 Reducer practice: https://redux.js.org/style-guide/style-guide#allow-many-reducers-to-respond-to-the-same-action
 Reducer practice: https://redux.js.org/recipes/structuring-reducers/structuring-reducers
 Async Actions: https://redux.js.org/advanced/async-actions
+React lifecycle methods: https://reactjs.org/docs/react-component.html
+React lifecycle diagram: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
