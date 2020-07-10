@@ -1,9 +1,10 @@
 // core & utils
 import React, { Component } from 'react'
-
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setSelectedWordId } from "../../actions/selectedWord";
+import { connect } from 'react-redux';
+
+// actions
+import { fetchWordGridBatch } from "../../actions/wordGrid";
 
 // componenets
 import WordGrid from "../../components/wordGridList/WordGrid";
@@ -13,8 +14,8 @@ class LandingPage extends Component {
         return (
             <div>
                 <WordGrid
-                    words={this.props.searchSuggestions}
-                    onWordClick={id => this.props.setSelectedWordId(id)}
+                    fetchWordGridBatch={index => this.props.fetchWordGridBatch(index)}
+                    wordGrid={this.props.wordGrid}
                 />
             </div>
         )
@@ -23,12 +24,11 @@ class LandingPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        selectedWord: state.selectedWord,
-        searchSuggestions: state.search.searchSuggestions.data
+        wordGrid: state.wordGrid.data
     };
 }
 function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedWordId: setSelectedWordId }, dispatch);
+    return bindActionCreators({ fetchWordGridBatch: fetchWordGridBatch }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(LandingPage);

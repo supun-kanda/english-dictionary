@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // components & containers
-import AppBar from "../../components/App/AppBar";
 import MainRouter from "./MainRouter";
 
 // services
@@ -14,11 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AppBar
-          searchSuggest={() => this.props.searchSuggest()}
-          searchSuggestions={this.props.searchSuggestions}
-        />
-        <MainRouter searchSuggestions={this.props.searchSuggestions} />
+        <MainRouter searchSuggestions={this.props.searchSuggestions} searchSuggest={() => this.props.searchSuggest()} />
       </div>
     )
   }

@@ -2,36 +2,36 @@
 import { request } from "../services/graphql";
 
 // constants
-import { SEARCH_SUGGESSTION, ACTION_STATES } from "../constants/stateManagement";
-import { lastWordsQuery } from "../constants/queries";
-import { searchSuggestionLimit } from "../constants/appConstants";
+import { FETCH_WORD_GRID, ACTION_STATES } from "../constants/stateManagement";
+import { paginateWords } from "../constants/queries";
+import { wordGridpaginationLimit } from "../constants/appConstants";
 
 const
     startFetching = () => {
         return {
-            type: SEARCH_SUGGESSTION,
+            type: FETCH_WORD_GRID,
             state: ACTION_STATES.IN_PROGRESS
         }
     },
     finishFetching = data => {
         return {
-            type: SEARCH_SUGGESSTION,
+            type: FETCH_WORD_GRID,
             state: ACTION_STATES.COMPLETE,
             data: data.words
         }
     },
     failFetching = error => {
         return {
-            type: SEARCH_SUGGESSTION,
+            type: FETCH_WORD_GRID,
             state: ACTION_STATES.FAILURE,
             error: error
         }
     }
 
-export const searchSuggest = () =>
+export const fetchWordGridBatch = (cursor) =>
     dispatch => {
         dispatch(startFetching());
-        return request(lastWordsQuery(searchSuggestionLimit))
+        return request(paginateWords(cursor, wordGridpaginationLimit))
             .then(data => dispatch(finishFetching(data)))
             .catch(err => dispatch(failFetching(err)));
     };

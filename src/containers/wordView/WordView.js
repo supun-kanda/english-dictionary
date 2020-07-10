@@ -10,8 +10,7 @@ import Table from "../../components/generic/table";
 
 class WordView extends Component {
     componentDidMount() {
-        console.log(this.props.match.params.id)
-        this.props.fetchSelectedWord(this.props.selectedWord.id);
+        this.props.fetchSelectedWord(this.props.match.params.id);
     }
     render() {
         const
