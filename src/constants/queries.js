@@ -5,14 +5,17 @@ last5WordsQuery =
     id
     name
     lastAccess
+    referCount
     }
 }`,
 
 fetchSelectedWordQuery = (id) =>
 `{
     word(id: ${id}) {
+        id
         name
         lastAccess
+        referCount
         creator {
           userName
         }
