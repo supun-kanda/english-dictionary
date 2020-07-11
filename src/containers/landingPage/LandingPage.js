@@ -1,21 +1,57 @@
 // core & utils
 import React, { Component } from 'react'
-
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setSelectedWordId } from "../../actions/selectedWord";
+import { connect } from 'react-redux';
+
+// actions
+import { fetchWordGridBatch } from "../../actions/wordGrid";
+import { getVocabularySize } from "../../actions/localActions";
 
 // componenets
 import WordGrid from "../../components/wordGridList/WordGrid";
+import Pagination from '@material-ui/lab/Pagination';
+
+// constants
+import { wordGridpaginationLimit } from "../../constants/appConstants";
+
 
 class LandingPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: 1,
+            vocabularySize: 0
+        }
+        this.onPageChange = this.onPageChange.bind(this);
+    }
+
+    onPageChange(_, selectedPage) {
+        this.setState({
+            page: selectedPage
+        })
+    }
+
+    componentDidMount() {
+        getVocabularySize()
+            .then(count =>
+                this.setState({
+                    vocabularySize: count
+                }))
+            .catch(err =>
+                this.setState({
+                    vocabularySize: 0
+                }))
+    }
+
     render() {
         return (
             <div>
                 <WordGrid
-                    words={this.props.searchSuggestions}
-                    onWordClick={id => this.props.setSelectedWordId(id)}
+                    fetchWordGridBatch={index => this.props.fetchWordGridBatch(index)}
+                    wordGrid={this.props.wordGrid}
+                    selectedPage={this.state.page}
                 />
+                <Pagination count={Math.ceil(this.state.vocabularySize / wordGridpaginationLimit)} page={this.state.page} onChange={this.onPageChange} />
             </div>
         )
     }
@@ -23,12 +59,11 @@ class LandingPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        selectedWord: state.selectedWord,
-        searchSuggestions: state.search.searchSuggestions.data
+        wordGrid: state.wordGrid.data
     };
 }
 function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedWordId: setSelectedWordId }, dispatch);
+    return bindActionCreators({ fetchWordGridBatch: fetchWordGridBatch }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(LandingPage);

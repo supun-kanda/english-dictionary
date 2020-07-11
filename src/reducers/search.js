@@ -9,7 +9,7 @@ export function search(state = SEARCH_SUGGESSTION_INITIAL, action) {
             return {
                 searchSuggestions: {
                     isFetching: true,
-                    shouldUpdate: true
+                    shouldUpdate: false
                 }
             };
         case ACTION_STATES.COMPLETE:
@@ -26,6 +26,12 @@ export function search(state = SEARCH_SUGGESSTION_INITIAL, action) {
                     isFetching: false,
                     shouldUpdate: true,
                     error: action.error
+                }
+            };
+        case ACTION_STATES.SHOULD_UPDATE:
+            return {
+                searchSuggestions: {
+                    shouldUpdate: true,
                 }
             };
         default:

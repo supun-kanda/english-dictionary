@@ -1,7 +1,7 @@
 export const
-last5WordsQuery =
+lastWordsQuery = limit =>
 `{
-    words(sortField:"lastAccess",sortOrder:-1,limit:5){
+    words(sortField:"lastAccess",sortOrder:-1,limit:${limit}){
     id
     name
     lastAccess
@@ -9,9 +9,19 @@ last5WordsQuery =
     }
 }`,
 
-fetchSelectedWordQuery = (id) =>
+paginateWords = (pageNumber, limit) =>
 `{
-    word(id: ${id}) {
+    words(skip:${pageNumber >= 1 ? (pageNumber - 1) * limit : 0}, limit:${limit}){
+    id
+    name
+    lastAccess
+    referCount
+    }
+}`,
+
+fetchSelectedWordQuery = id =>
+`{
+    word(id: "${id}") {
         id
         name
         lastAccess
@@ -20,4 +30,9 @@ fetchSelectedWordQuery = (id) =>
           userName
         }
     }
-}`;
+}`,
+
+countVocabulary = () =>
+`{
+    count
+}`
