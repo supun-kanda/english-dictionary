@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
+// actions
 import { fetchSelectedWord } from "../../actions/selectedWord";
+import { setSearchSuggesstionUpdateStatus } from "../../actions/search";
 
 // componenets
 import Table from "../../components/generic/table";
@@ -31,6 +34,9 @@ class WordView extends Component {
             </div>
         )
     }
+    componentWillUnmount() {
+        this.props.setSearchSuggesstionUpdateStatus(true);
+    }
 }
 
 function mapStateToProps(state) {
@@ -39,7 +45,10 @@ function mapStateToProps(state) {
     };
 }
 function matchDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchSelectedWord: fetchSelectedWord }, dispatch);
+    return bindActionCreators({
+        fetchSelectedWord: fetchSelectedWord,
+        setSearchSuggesstionUpdateStatus: setSearchSuggesstionUpdateStatus
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(WordView);

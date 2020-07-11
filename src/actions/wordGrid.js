@@ -22,10 +22,10 @@ const
         error: error
     })
 
-export const fetchWordGridBatch = cursor =>
+export const fetchWordGridBatch = pageNumber =>
     dispatch => {
         dispatch(startFetch());
-        return request(paginateWords(cursor, wordGridpaginationLimit))
+        return request(paginateWords(pageNumber, wordGridpaginationLimit))
             .then(data => dispatch(finishedFetch(data)))
             .catch(err => dispatch(failedFetch(err)));
     };

@@ -9,9 +9,9 @@ lastWordsQuery = limit =>
     }
 }`,
 
-paginateWords = (cursor, limit) =>
+paginateWords = (pageNumber, limit) =>
 `{
-    words(index:"${cursor || ""}", limit:${limit}){
+    words(skip:${pageNumber >= 1 ? (pageNumber - 1) * limit : 0}, limit:${limit}){
     id
     name
     lastAccess
@@ -30,4 +30,9 @@ fetchSelectedWordQuery = id =>
           userName
         }
     }
-}`;
+}`,
+
+countVocabulary = () =>
+`{
+    count
+}`

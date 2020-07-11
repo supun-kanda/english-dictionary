@@ -6,8 +6,15 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { Link } from "react-router-dom";
 
 export default class WordGrid extends Component {
+
     componentDidMount() {
         this.props.fetchWordGridBatch(null);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.selectedPage !== prevProps.selectedPage) {
+            this.props.fetchWordGridBatch(this.props.selectedPage);
+        }
     }
 
     render() {

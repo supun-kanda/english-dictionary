@@ -12,7 +12,7 @@ export default class MainRouter extends Component {
             <BrowserRouter>
                 <AppBar
                     searchSuggest={this.props.searchSuggest}
-                    searchSuggestions={this.props.searchSuggestions}
+                    searchSuggestions={this.props.searchSuggestions || {}}
                 />
                 <Route exact path="/" component={LandingPage} />
                 <Route path="/word/:id/view" component={WordView} />

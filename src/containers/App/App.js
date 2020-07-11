@@ -21,7 +21,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    searchSuggestions: state.search.searchSuggestions.data,
+    searchSuggestions: state.search.searchSuggestions,
   };
 }
 function matchDispatchToProps(dispatch) {

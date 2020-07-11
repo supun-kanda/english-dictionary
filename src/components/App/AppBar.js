@@ -9,9 +9,16 @@ import { Autocomplete } from '@material-ui/lab';
 import { Link } from "react-router-dom";
 
 export default class AppBar extends Component {
+
     componentDidMount() {
         this.props.searchSuggest();
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.searchSuggestions.shouldUpdate !== prevProps.searchSuggestions.shouldUpdate)
+            this.props.searchSuggest();
+    }
+
     render() {
         return (
             <div>
@@ -26,10 +33,11 @@ export default class AppBar extends Component {
                         <Button color="inherit">Login</Button>
                         <Autocomplete
                             id="combo-box-demo"
-                            options={this.props.searchSuggestions || []}
-                            getOptionLabel={(option) => option.name || ''}
+                            options={this.props.searchSuggestions.data || []}
+                            getOptionLabel={option => option.name || ''}
                             style={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Search Words" variant="outlined" />}
+                            renderInput={params => <TextField {...params} label="Search Words" variant="outlined" />}
+                            renderOption={option => <Link to={`/word/${option.id}/view`}>{option.name}</Link>}
                         />
                     </Toolbar>
                 </Bar>

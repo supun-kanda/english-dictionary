@@ -10,7 +10,8 @@ export const
     ACTION_STATES = {
         COMPLETE: 'COMPLETE',
         IN_PROGRESS: 'IN_PROGRESS',
-        FAILURE: 'FAILURE'
+        FAILURE: 'FAILURE',
+        SHOULD_UPDATE: 'SHOULD_UPDATE'
     };
 
 // initial states

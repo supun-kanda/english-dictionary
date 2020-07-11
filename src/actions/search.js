@@ -22,11 +22,17 @@ const
         error: error
     })
 
-export const searchSuggest = () =>
-    dispatch => {
-        dispatch(startFetch());
-        return request(lastWordsQuery(searchSuggestionLimit))
-            .then(data => dispatch(finishedFetch(data)))
-            .catch(err => dispatch(failedFetch(err)));
-    };
+export const
+    setSearchSuggesstionUpdateStatus = state => ({
+        type: SEARCH_SUGGESSTION,
+        state: ACTION_STATES.SHOULD_UPDATE,
+        data: state
+    }),
+    searchSuggest = () =>
+        dispatch => {
+            dispatch(startFetch());
+            return request(lastWordsQuery(searchSuggestionLimit))
+                .then(data => dispatch(finishedFetch(data)))
+                .catch(err => dispatch(failedFetch(err)));
+        };
 
