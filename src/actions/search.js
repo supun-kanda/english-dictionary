@@ -7,32 +7,26 @@ import { lastWordsQuery } from "../constants/queries";
 import { searchSuggestionLimit } from "../constants/appConstants";
 
 const
-    startFetching = () => {
-        return {
-            type: SEARCH_SUGGESSTION,
-            state: ACTION_STATES.IN_PROGRESS
-        }
-    },
-    finishFetching = data => {
-        return {
-            type: SEARCH_SUGGESSTION,
-            state: ACTION_STATES.COMPLETE,
-            data: data.words
-        }
-    },
-    failFetching = error => {
-        return {
-            type: SEARCH_SUGGESSTION,
-            state: ACTION_STATES.FAILURE,
-            error: error
-        }
-    }
+    startFetch = () => ({
+        type: SEARCH_SUGGESSTION,
+        state: ACTION_STATES.IN_PROGRESS
+    }),
+    finishedFetch = data => ({
+        type: SEARCH_SUGGESSTION,
+        state: ACTION_STATES.COMPLETE,
+        data: data.words
+    }),
+    failedFetch = error => ({
+        type: SEARCH_SUGGESSTION,
+        state: ACTION_STATES.FAILURE,
+        error: error
+    })
 
 export const searchSuggest = () =>
     dispatch => {
-        dispatch(startFetching());
+        dispatch(startFetch());
         return request(lastWordsQuery(searchSuggestionLimit))
-            .then(data => dispatch(finishFetching(data)))
-            .catch(err => dispatch(failFetching(err)));
+            .then(data => dispatch(finishedFetch(data)))
+            .catch(err => dispatch(failedFetch(err)));
     };
 

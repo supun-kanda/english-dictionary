@@ -1,5 +1,5 @@
 export const
-lastWordsQuery = (limit) =>
+lastWordsQuery = limit =>
 `{
     words(sortField:"lastAccess",sortOrder:-1,limit:${limit}){
     id
@@ -19,7 +19,7 @@ paginateWords = (cursor, limit) =>
     }
 }`,
 
-fetchSelectedWordQuery = (id) =>
+fetchSelectedWordQuery = id =>
 `{
     word(id: "${id}") {
         id

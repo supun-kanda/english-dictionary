@@ -7,32 +7,26 @@ import { paginateWords } from "../constants/queries";
 import { wordGridpaginationLimit } from "../constants/appConstants";
 
 const
-    startFetching = () => {
-        return {
-            type: FETCH_WORD_GRID,
-            state: ACTION_STATES.IN_PROGRESS
-        }
-    },
-    finishFetching = data => {
-        return {
-            type: FETCH_WORD_GRID,
-            state: ACTION_STATES.COMPLETE,
-            data: data.words
-        }
-    },
-    failFetching = error => {
-        return {
-            type: FETCH_WORD_GRID,
-            state: ACTION_STATES.FAILURE,
-            error: error
-        }
-    }
+    startFetch = () => ({
+        type: FETCH_WORD_GRID,
+        state: ACTION_STATES.IN_PROGRESS
+    }),
+    finishedFetch = data => ({
+        type: FETCH_WORD_GRID,
+        state: ACTION_STATES.COMPLETE,
+        data: data.words
+    }),
+    failedFetch = error => ({
+        type: FETCH_WORD_GRID,
+        state: ACTION_STATES.FAILURE,
+        error: error
+    })
 
-export const fetchWordGridBatch = (cursor) =>
+export const fetchWordGridBatch = cursor =>
     dispatch => {
-        dispatch(startFetching());
+        dispatch(startFetch());
         return request(paginateWords(cursor, wordGridpaginationLimit))
-            .then(data => dispatch(finishFetching(data)))
-            .catch(err => dispatch(failFetching(err)));
+            .then(data => dispatch(finishedFetch(data)))
+            .catch(err => dispatch(failedFetch(err)));
     };
 

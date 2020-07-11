@@ -6,38 +6,30 @@ import { fetchSelectedWordQuery } from "../constants/queries";
 import { request } from "../services/graphql";
 
 const
-    startFetching = () => {
-        return {
-            type: FETCH_SELECTED_WORD,
-            state: ACTION_STATES.IN_PROGRESS
-        }
-    },
-    finishFetching = data => {
-        return {
-            type: FETCH_SELECTED_WORD,
-            state: ACTION_STATES.COMPLETE,
-            data: data.word
-        }
-    },
-    failFetching = error => {
-        return {
-            type: FETCH_SELECTED_WORD,
-            state: ACTION_STATES.FAILURE,
-            error: error
-        }
-    };
+    startFetch = () => ({
+        type: FETCH_SELECTED_WORD,
+        state: ACTION_STATES.IN_PROGRESS
+    }),
+    finishedFetch = data => ({
+        type: FETCH_SELECTED_WORD,
+        state: ACTION_STATES.COMPLETE,
+        data: data.word
+    }),
+    failedFetch = error => ({
+        type: FETCH_SELECTED_WORD,
+        state: ACTION_STATES.FAILURE,
+        error: error
+    });
 
 export const
-    setSelectedWordId = id => {
-        return {
-            type: SET_SELECTED_WORD_ID,
-            data: id
-        }
-    },
+    setSelectedWordId = id => ({
+        type: SET_SELECTED_WORD_ID,
+        data: id
+    }),
     fetchSelectedWord = id =>
         dispatch => {
-            dispatch(startFetching());
+            dispatch(startFetch());
             return request(fetchSelectedWordQuery(id))
-                .then(data => dispatch(finishFetching(data)))
-                .catch(err => dispatch(failFetching(err)))
+                .then(data => dispatch(finishedFetch(data)))
+                .catch(err => dispatch(failedFetch(err)))
         };
