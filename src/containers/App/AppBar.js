@@ -1,21 +1,25 @@
 // react
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // components & containers
 import { AppBar as Bar, TextField, IconButton, Toolbar, Typography, Button } from "@material-ui/core";
 import { Portrait } from "@material-ui/icons";
 import { Autocomplete } from '@material-ui/lab';
 
-import { Link } from "react-router-dom";
+// actions
+import { searchSuggest } from "../../actions/search";
 
-export default class AppBar extends Component {
+class AppBar extends Component {
 
     componentDidMount() {
         this.props.searchSuggest();
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.searchSuggestions.shouldUpdate !== prevProps.searchSuggestions.shouldUpdate)
+        if (this.props.searchSuggestions.shouldUpdate && !prevProps.searchSuggestions.shouldUpdate)
             this.props.searchSuggest();
     }
 
@@ -45,3 +49,15 @@ export default class AppBar extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        searchSuggestions: state.search.searchSuggestions,
+    };
+}
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({ searchSuggest: searchSuggest }, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(AppBar);
+

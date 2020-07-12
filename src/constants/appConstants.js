@@ -5,4 +5,4 @@ export const
     },
     apiUrl = "http://localhost:8080",
     searchSuggestionLimit = 5,
-    wordGridpaginationLimit = 9;
+    wordGridpaginationLimit = 6;
