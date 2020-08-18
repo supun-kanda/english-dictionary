@@ -24,6 +24,7 @@ fetchSelectedWordQuery = id =>
     word(id: "${id}") {
         id
         name
+        meaning
         lastAccess
         referCount
         creator {

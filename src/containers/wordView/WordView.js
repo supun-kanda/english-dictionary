@@ -22,14 +22,14 @@ class WordView extends Component {
             userName = selectedWord.creator ? selectedWord.creator.userName : null,
             tableRows = [
                 { key: 'Last Access', value: `${lastAccessDate.toLocaleDateString('en-US')} ${lastAccessDate.toLocaleTimeString('en-US')}` },
-                { key: 'Views', value: selectedWord.referCount },
+                { key: 'Views', value: selectedWord.referCount || 0 },
                 { key: 'Created By', value: userName }
             ];
 
         return (
             <div>
                 <h1>{selectedWord.name}</h1>
-                <p>I forgot to add meaning attribute in the database entities. So this will be shown until I fix it</p>
+                <p>{selectedWord.meaning}</p>
                 {selectedWord.id && !selectedWord.isFetching ? <Table rows={tableRows} /> : null}
             </div>
         )
